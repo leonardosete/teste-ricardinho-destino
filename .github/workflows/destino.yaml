@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: leonardosete/teste-ricardinho-origem
+#          ref: main                    # <<<< Ajuste o branch aqui!
           path: repo-origem
           token: ${{ secrets.GH_PAT }}
 
