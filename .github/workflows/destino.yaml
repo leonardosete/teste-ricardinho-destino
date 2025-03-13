@@ -5,11 +5,25 @@ on:
     types: [trigger-workflow]
 
 jobs:
-  execute:
+  run-python-from-origin:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo destino
         uses: actions/checkout@v4
 
-      - name: Display Message
-        run: echo "🚀 Workflow acionado remotamente pelo repositório origem!"
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Checkout repo origem
+        uses: actions/checkout@v4
+        with:
+          repository: leonardosete/teste-ricardinho-origem
+          path: repo-origem
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Executar o script Python do repo origem
+        run: |
+          python ./repo-origem/hello_from_origin.py
