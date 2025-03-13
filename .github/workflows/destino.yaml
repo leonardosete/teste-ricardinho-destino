@@ -1,0 +1,15 @@
+name: Remote Workflow Triggered
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow]
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Message
+        run: echo "🚀 Workflow acionado remotamente pelo repositório origem!"
